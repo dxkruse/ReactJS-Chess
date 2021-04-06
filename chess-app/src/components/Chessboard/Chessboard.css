@@ -4,7 +4,7 @@
     grid-template-rows: repeat(8, 100px);
     width: 800px;
     height: 800px;
-    background-color: white;
+    background-color: purple;
 }
 
 #tile {
