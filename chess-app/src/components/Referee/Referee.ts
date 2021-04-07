@@ -4,7 +4,13 @@ export default class Referee {
 
     tileIsOccupied(x:number, y:number, boardState: Piece[]): boolean {
         console.log("checking if tile is occupied");
-        return true;
+
+        const piece = boardState.find(p => p.x === x && p.y === y)
+        if (piece) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     isValidMove(x0: number, y0: number, x1: number, y1: number, type: PieceType, team: TeamType, boardState: Piece[]) {
@@ -21,18 +27,23 @@ export default class Referee {
                         if (!this.tileIsOccupied(x1, y1, boardState)) {
                             return true;
                         }
-                        return true;
                     } 
                 } else if (x0 === x1 && y1 - y0 === 1) {
-                    return true;
+                    if (!this.tileIsOccupied(x1, y1, boardState)) {
+                        return true;
+                    }
                 }
             } else {
                 if(y0 === 6) {
                     if(x0 === x1 && (y1 - y0 === -1 || y1 - y0 === -2)) {
-                        return true;
+                        if (!this.tileIsOccupied(x1, y1, boardState)) {
+                            return true;
+                        }
                     }
                 } else if (x0 === x1 && y1 - y0 === -1) {
-                    return true;
+                    if (!this.tileIsOccupied(x1, y1, boardState)) {
+                        return true;
+                    }
                 }
         //return false;
             }
